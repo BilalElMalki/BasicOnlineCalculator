@@ -1,0 +1,196 @@
+/* ================================================
+   Calculator App — Light Color Theme
+   ================================================ */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f4f8;
+    color: #2d3748;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px 16px;
+}
+
+.page-wrapper {
+    width: 100%;
+    max-width: 680px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* ---- Calculator Card ---- */
+.calculator-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 36px 40px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+.title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #2b6cb0;
+    margin-bottom: 24px;
+    text-align: center;
+    letter-spacing: -0.5px;
+}
+
+/* ---- Result Banner ---- */
+.result-banner {
+    border-radius: 10px;
+    padding: 14px 20px;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.result-banner.success {
+    background-color: #ebf8ff;
+    color: #2b6cb0;
+    border: 1px solid #bee3f8;
+}
+
+.result-banner.error {
+    background-color: #fff5f5;
+    color: #c53030;
+    border: 1px solid #fed7d7;
+}
+
+/* ---- Form Layout ---- */
+.form-row {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    margin-bottom: 24px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 6px;
+}
+
+.operator-group {
+    flex: 0 0 100px;
+}
+
+label {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #718096;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.input-field,
+.select-field {
+    padding: 12px 14px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 1rem;
+    color: #2d3748;
+    background: #f7fafc;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+    width: 100%;
+}
+
+.input-field:focus,
+.select-field:focus {
+    border-color: #63b3ed;
+    box-shadow: 0 0 0 3px rgba(99, 179, 237, 0.2);
+    background: #ffffff;
+}
+
+.select-field {
+    cursor: pointer;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.field-error {
+    font-size: 0.78rem;
+    color: #c53030;
+}
+
+/* ---- Equals Button ---- */
+.btn-calculate {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #ffffff;
+    background: linear-gradient(135deg, #4299e1, #2b6cb0);
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.1s;
+    letter-spacing: 0.05em;
+}
+
+.btn-calculate:hover {
+    opacity: 0.92;
+}
+
+.btn-calculate:active {
+    transform: scale(0.98);
+}
+
+/* ---- History Card ---- */
+.history-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 28px 32px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+.history-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #4a5568;
+    margin-bottom: 16px;
+}
+
+.history-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.history-table th {
+    text-align: left;
+    padding: 10px 12px;
+    background-color: #edf2f7;
+    color: #718096;
+    font-weight: 600;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.history-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #f0f4f8;
+    color: #4a5568;
+}
+
+.history-table tr:last-child td {
+    border-bottom: none;
+}
+
+.history-table tr:hover td {
+    background-color: #f7fafc;
+}

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Calculator</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+    <!-- Calculator Card -->
+    <div class="calculator-card">
+        <h1 class="title">Calculator</h1>
+
+        <!-- Result / Error Banner -->
+        <div th:if="${response != null}">
+            <div th:if="${!response.hasError()}" class="result-banner success">
+                <span th:text="${response.expression}">expression</span>
+            </div>
+            <div th:if="${response.hasError()}" class="result-banner error">
+                <span th:text="${response.error}">error</span>
+            </div>
+        </div>
+
+        <!-- Calculation Form -->
+        <form th:action="@{/calculate}" th:object="${request}" method="post">
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="operand1">First Number</label>
+                    <input type="number" id="operand1" th:field="*{operand1}"
+                           step="any" placeholder="0" class="input-field"/>
+                    <span th:if="${#fields.hasErrors('operand1')}"
+                          th:errors="*{operand1}" class="field-error"></span>
+                </div>
+
+                <div class="form-group operator-group">
+                    <label for="operator">Operator</label>
+                    <select id="operator" th:field="*{operator}" class="select-field">
+                        <option value="">--</option>
+                        <option value="+">+</option>
+                        <option value="-">−</option>
+                        <option value="*">×</option>
+                        <option value="/">&divide;</option>
+                    </select>
+                    <span th:if="${#fields.hasErrors('operator')}"
+                          th:errors="*{operator}" class="field-error"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="operand2">Second Number</label>
+                    <input type="number" id="operand2" th:field="*{operand2}"
+                           step="any" placeholder="0" class="input-field"/>
+                    <span th:if="${#fields.hasErrors('operand2')}"
+                          th:errors="*{operand2}" class="field-error"></span>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-calculate">=</button>
+        </form>
+    </div>
+
+    <!-- History Table -->
+    <div class="history-card" th:if="${history != null and !#lists.isEmpty(history)}">
+        <h2 class="history-title">History</h2>
+        <table class="history-table">
+            <thead>
+                <tr>
+                    <th>Expression</th>
+                    <th>Result</th>
+                    <th>Date &amp; Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="calc : ${history}">
+                    <td th:text="${calc.operand1 + ' ' + calc.operator + ' ' + calc.operand2}">expr</td>
+                    <td th:text="${calc.result}">result</td>
+                    <td th:text="${#temporals.format(calc.timestamp, 'yyyy-MM-dd HH:mm:ss')}">date</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+</body>
+</html>
